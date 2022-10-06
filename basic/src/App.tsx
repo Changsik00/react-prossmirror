@@ -5,6 +5,7 @@ import { Schema, DOMParser } from 'prosemirror-model'
 import { schema } from './prosemirror/schema-basic'
 import { addListNodes } from 'prosemirror-schema-list'
 import { exampleSetup } from './prosemirror/setup'
+import applyDevTools from "prosemirror-dev-tools"
 
 import './App.css'
 import './Prosemirror.css'
@@ -16,12 +17,15 @@ function App() {
       marks: schema.spec.marks,
     })
 
-    const editor = new EditorView(document.querySelector('#editor'), {
+    const view = new EditorView(document.querySelector('#editor'), {
       state: EditorState.create({
         doc: DOMParser.fromSchema(mySchema).parse(document.querySelector('#content') as Node),
         plugins: exampleSetup({ schema: mySchema }),
       }),
     })
+
+    applyDevTools(view);
+
   }, [])
 
   return (
