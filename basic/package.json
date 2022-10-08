@@ -9,6 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "nanoid": "^4.0.0",
     "prosemirror-commands": "^1.0.0",
     "prosemirror-dropcursor": "^1.0.0",
     "prosemirror-gapcursor": "^1.0.0",
@@ -22,7 +23,6 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.8.4",
-    "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {

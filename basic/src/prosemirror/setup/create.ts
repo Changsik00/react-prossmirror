@@ -1,14 +1,13 @@
 import { Node, NodeType } from 'prosemirror-model'
 import { Plugin } from 'prosemirror-state'
-import { v4 as uuid4 } from 'uuid'
+import { nanoid } from 'nanoid'
 import { PID } from '../../constants'
-// import { uuid } from 'uuidv4'
 
 const isTargetNodeOfType = (node: Node, type: NodeType) => node.type === type
 const isNodeHasAttribute = (node: Node, attrName: string) => Boolean(node.attrs && node.attrs[attrName])
 const attrName = PID
 
-export const createPlugin = (uuidGenerator = uuid4) => {
+export const createPlugin = (uuidGenerator = nanoid) => {
   return new Plugin({
     appendTransaction: (transactions, prevState, nextState) => {
       const tr = nextState.tr
