@@ -1,7 +1,7 @@
 import { Schema, NodeSpec, MarkSpec, DOMOutputSpec } from 'prosemirror-model'
+import { PID } from '../constants'
 
-const pDOM: DOMOutputSpec = ['p', 0],
-  blockquoteDOM: DOMOutputSpec = ['blockquote', 0],
+const blockquoteDOM: DOMOutputSpec = ['blockquote', 0],
   hrDOM: DOMOutputSpec = ['hr'],
   preDOM: DOMOutputSpec = ['pre', ['code', 0]],
   brDOM: DOMOutputSpec = ['br']
@@ -18,9 +18,13 @@ export const nodes = {
   paragraph: {
     content: 'inline*',
     group: 'block',
+    attrs: {
+      [PID]: { default: '' },
+    },
     parseDOM: [{ tag: 'p' }],
-    toDOM() {
-      return pDOM
+    toDOM(node) {
+      const pId = node.attrs[PID]
+      return ['p', { 'data-paragraph-id': pId }, 0]
     },
   } as NodeSpec,
 
